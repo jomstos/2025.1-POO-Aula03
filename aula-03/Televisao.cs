@@ -48,30 +48,34 @@ public class Televisao
 
     public void AumentarVolume()
     {
-        if (Volume < VOLUME_MAXIMO)
+        if (Volume > VOLUME_MINIMO && Estado == false) // Verifica se não está mudo
         {
-            Volume++;
-            _ultimoVolume = Volume;
-        }
-        else
-        {
-            Console.WriteLine("A TV já está no volume máximo permitido");
+            if (Volume < VOLUME_MAXIMO)
+            {
+                Volume++;
+                _ultimoVolume = Volume;
+            }
+            else
+            {
+                Console.WriteLine("A TV já está no volume máximo permitido");
+            }
         }
     }
-
     public void DiminuirVolume()
     {
-        if (Volume > VOLUME_MINIMO)
+        if (Volume < VOLUME_MAXIMO && Estado == false) //Verifica se não está mudo
         {
-            Volume--;
-            _ultimoVolume = Volume;
-        }
-        else
-        {
-            Console.WriteLine("A TV já está no volume mínimo permitido");
+            if (Volume > VOLUME_MINIMO)
+            {
+                Volume--;
+                _ultimoVolume = Volume;
+            }
+            else
+            {  
+                Console.WriteLine("A TV já está no volume mínimo permitido");
+            }
         }
     }
-
     //1 botao de mudo -  toggle (on/off)
     //Volume = x; Volume = 0; Volume = x;
     public void AlternarModoMudo()
@@ -87,5 +91,20 @@ public class Televisao
             Volume = _ultimoVolume;
             Console.WriteLine($"O volume da TV é: {Volume}.");
         }
+    }
+
+    public void AumentarCanal()
+    { 
+        Canal++;
+    }
+
+    public void DiminuirCanal()
+    {
+        Canal--;
+    }
+
+    public void SelecionarCanal(int canal)
+    {
+        Canal = canal;
     }
 }
